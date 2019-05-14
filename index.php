@@ -1,3 +1,7 @@
+<?php
+    include 'global/config.php';
+    include 'global/conexion.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,69 +42,45 @@
         </div>
         <br>
         <div class="row">
+            <?php
+                $sentencia = $pdo->prepare("SELECT * FROM `tblproductos`");
+                $sentencia->execute();
+                $listaProductos=$sentencia->fetchAll(PDO:: FETCH_ASSOC);
+                //print_r($listaProductos);
+            ?>
+            <?php
+                foreach ($listaProductos as $producto){
+            ?>
             <div class="col-md-3">
                 <div class="card">
-                    <img src="archivos/img-libros/casa%20negra.jpg" class="card-img-top" alt="...">
+                    <img src="<?php echo $producto['IMAGEN'];?>"
+                         title="<?php echo $producto['NOMBRE'];?>"
+                         class="card-img-top"
+                         alt="<?php echo $producto['NOMBRE'];?>"
+                         data-toggle="popover"
+                         data-trigger="hover"
+                         data-content="<?php echo $producto['DESCRIPCION'];?>">
                     <div class="card-body">
-                        <span>Casa negra</span>
-                        <h5 class="card-title">$ 25,00</h5>
-                        <p class="card-text">So make up the bule card's content.</p>
+                        <span><?php echo $producto['NOMBRE'];?></span>
+                        <h5 class="card-title"><?php echo $producto['PRECIO'];?></h5>
                         <button type="button" class="btn btn-primary">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="archivos/img-libros/images.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <span>Casa negra</span>
-                        <h5 class="card-title">$ 25,00</h5>
-                        <p class="card-text">So make up the bulkaaaaaaaaaaaaontent.</p>
-                        <button type="button" class="btn btn-primary">Agregar al carrito</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="archivos/img-libros/casa%20negra.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span>Casa negra</span>
-                        <h5 class="card-title">$ 25,00</h5>
-                        <p class="card-text">So make up the bulk of the card's content.</p>
-                        <button type="button" class="btn btn-primary">Agregar al carrito</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="archivos/img-libros/casa%20negra.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span>Casa negra</span>
-                        <h5 class="card-title">$ 25,00</h5>
-                        <p class="card-text">So make up the bulk of the card's content.</p>
-                        <button type="button" class="btn btn-primary">Agregar al carrito</button>
-                    </div>
-                </div>
-            </div>
+
+            <?php
+                }
+            ?>
         </div>
         <br>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="archivos/img-libros/casa%20negra.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span>Casa negra</span>
-                        <h5 class="card-title">$ 25,00</h5>
-                        <p class="card-text">So make up the bulk of the card's content.</p>
-                        <button type="button" class="btn btn-primary">Agregar al carrito</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 <br>
 <br>
 
-
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
 </body>
 </html>
