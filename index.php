@@ -7,10 +7,12 @@
 
     <div class="container">
     <br>
+        <?php if ($mensaje!=""){ ?>
         <div class="alert alert-success" role="alert">
             <?php echo $mensaje; ?>
-            <a href="#" class="badge badge-success">Ver carrito</a>
+            <a href="mostrarCarrito.php" class="badge badge-success">Ver carrito</a>
         </div>
+        <?php }?>
         <br>
         <div class="row">
             <?php
@@ -35,7 +37,7 @@
                         <span><?php echo $producto['NOMBRE'];?></span>
                         <h5 class="card-title"><?php echo $producto['PRECIO'];?></h5>
                         <form action="" method="post">
-                            <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Ingrese cantidad">
+                            <input type="number" class="form-control" value="1" name="cantidad" id="cantidad" placeholder="Ingrese cantidad">
                             <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['ID'],COD,KEY);?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo  openssl_encrypt($producto['NOMBRE'],COD,KEY);?>">
                             <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['PRECIO'],COD,KEY );?>">

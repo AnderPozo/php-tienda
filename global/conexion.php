@@ -7,7 +7,7 @@
             array(PDO::MYSQL_ATTR_INIT_COMMAND =>"SET NAMES utf8")
         );
 
-        echo "<script>alert('Conexión exitosa...')</script>";
+        //echo "<script>alert('Conexión exitosa...')</script>";
 
     }catch (PDOException $e){
 
