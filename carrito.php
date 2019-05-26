@@ -4,27 +4,12 @@
 
     //Comprueba datos enviados desde el formulario de index
     if (isset($_POST['btnAccion'])){
-        $cantidad =$_POST["cantidad"];
+
 
         switch ($_POST['btnAccion']){
 
             case 'Agregar':
-                if (is_numeric($_POST["cantidad"]) && $cantidad >0){
-                    //$cantidad =$_POST["cantidad"];
-                    $mensaje.="Cantidad: " . $cantidad ."<br>";
-                }else{
-                    $mensaje.="Ingrese una cantidad válida" . "<br>";
-                    break;
-                }
 
-                /*
-                if ($cantidad >0){
-                    $subtotal=$PRECIO*$cantidad;
-                    $mensaje.="Subtotal: " . $subtotal . " $ " . "<br>";
-                }else{
-                    echo "<script>alert('Ingrese una cantidad válida');</script>";
-                    break;
-                }*/
 
                 if (is_numeric(openssl_decrypt($_POST["id"],COD,KEY))){
                     $ID=openssl_decrypt($_POST["id"],COD,KEY);
@@ -47,6 +32,24 @@
                     $mensaje.= "Ok...Precio correcto " . $PRECIO . "<br>";
                 }else{
                     $mensaje.= "Upps, pasó algo con el precio" . "<br>";
+                    break;
+                }
+
+                $cantidad =$_POST["cantidad"];
+                if (is_numeric($_POST["cantidad"])){
+                    //$cantidad =$_POST["cantidad"];
+                    $mensaje.="Cantidad: " . $cantidad ."<br>";
+                }else{
+                    $mensaje.="Ingrese una cantidad válida" . "<br>";
+                    break;
+                }
+
+
+                if ($cantidad >0){
+                    $subtotal=$PRECIO*$cantidad;
+                    $mensaje.="Subtotal: " . $subtotal . " $ " . "<br>";
+                }else{
+                    echo "<script>alert('Ingrese una cantidad válida');</script>";
                     break;
                 }
 

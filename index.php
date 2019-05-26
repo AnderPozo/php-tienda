@@ -36,6 +36,7 @@
                     <div class="card-body">
                         <span><?php echo $producto['NOMBRE'];?></span>
                         <h5 class="card-title"><?php echo $producto['PRECIO'];?></h5>
+
                         <form action="" method="post">
                             <input type="number" class="form-control" value="1" name="cantidad" id="cantidad" placeholder="Ingrese cantidad">
                             <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['ID'],COD,KEY);?>">
@@ -44,17 +45,15 @@
                             <br>
                             <button type="submit" name="btnAccion" value="Agregar" class="btn btn-primary">Agregar al carrito</button>
                         </form>
-
                     </div>
                 </div>
+                <br>
             </div>
 
             <?php
                 }
             ?>
         </div>
-        <br>
-    </div>
 <br>
 <br>
 
